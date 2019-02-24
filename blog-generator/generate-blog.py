@@ -5,7 +5,7 @@ import os
 
 text = ''
 
-BLOG_DIR='crawler/blog-posts'
+BLOG_DIR='../crawler/blog-posts'
 
 for file in os.listdir(BLOG_DIR):
     if file.endswith(".txt"):
