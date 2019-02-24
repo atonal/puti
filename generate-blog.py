@@ -16,12 +16,18 @@ for file in os.listdir(BLOG_DIR):
 # Build the model.
 text_model = markovify.Text(text)
 
-# Print five randomly-generated sentences
-for i in range(5):
+# title
+title = text_model.make_short_sentence(80)
+while not title:
+    title = text_model.make_short_sentence(80)
+print(title)
+
+print('\n')
+
+# body
+for i in range(10):
     sentence = text_model.make_sentence()
     if sentence is not None:
-        print(sentence)
+        print(sentence, end=' ')
 
-# # Print three randomly-generated sentences of no more than 140 characters
-# for i in range(3):
-#     print(text_model.make_short_sentence(140))
+print('\n')
