@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-FLASK_APP=putify.py pipenv run flask run
+PYTHONPATH=${PYTHONPATH}:../blog-generator FLASK_APP=putify.py pipenv run flask run
