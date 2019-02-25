@@ -8,5 +8,9 @@
   <header>
     <div class="title">{{ title }}</div>
   </header>
-    <div class="body">{{ body }}</div>
+  <div class="body">
+    {% for paragraph in paragraphs %}
+      <p>{{ paragraph }}</p>
+    {% endfor %}
+  </div>
 </section>

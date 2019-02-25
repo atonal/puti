@@ -2,9 +2,29 @@
 
 import markovify
 import os
+import random
 
 BLOG_DIR='../crawler/blog-posts'
 TITLE_MAX_LEN=80
+
+BLOG_SIZES = [
+        {
+            'sentences': [1, 2],
+            'paragraphs': [1, 2]
+            },
+        {
+            'sentences': [2, 3],
+            'paragraphs': [2, 3]
+            },
+        {
+            'sentences': [2, 4],
+            'paragraphs': [2, 4]
+            },
+        {
+            'sentences': [2, 5],
+            'paragraphs': [3, 6]
+            }
+        ]
 
 def generate_title(text_model):
     title = text_model.make_short_sentence(TITLE_MAX_LEN)
@@ -34,13 +54,20 @@ def generate_post():
 
     title = generate_title(text_model)
 
-    # body
-    sentences = generate_sentences(text_model, 5)
+    size = random.choice(BLOG_SIZES)
 
-    body = ' '.join(sentences)
-    return title, body
+    num_of_paragraphs = random.randrange(size['paragraphs'][0], size['paragraphs'][1]+1)
+    paragraphs = []
+    # body
+    for i in range(num_of_paragraphs):
+        num_of_sentences = random.randrange(size['sentences'][0], size['sentences'][1]+1)
+        sentences = generate_sentences(text_model, num_of_sentences)
+        paragraphs.append(' '.join(sentences))
+
+    return title, paragraphs
 
 if __name__ == '__main__':
-    title, body = generate_post()
+    title, paragraphs = generate_post()
+    body = '\n\n'.join(paragraphs)
     post = '{}\n\n{}'.format(title, body)
     print(post)
