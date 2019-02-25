@@ -13,7 +13,7 @@ BLOG_SIZES = [
             'paragraphs': [1, 2]
             },
         {
-            'sentences': [2, 3],
+            'sentences': [1, 3],
             'paragraphs': [2, 3]
             },
         {
@@ -41,6 +41,14 @@ def generate_sentences(text_model, num):
         sentences.append(sentence)
     return sentences
 
+def get_blog_size(size):
+    num_of_paragraphs = random.randrange(size['paragraphs'][0], size['paragraphs'][1]+1)
+    return num_of_paragraphs
+
+def get_paragraph_size(size):
+    num_of_sentences = random.randrange(size['sentences'][0], size['sentences'][1]+1)
+    return num_of_sentences
+
 def generate_post():
     text = ''
     for file in os.listdir(BLOG_DIR):
@@ -55,12 +63,12 @@ def generate_post():
     title = generate_title(text_model)
 
     size = random.choice(BLOG_SIZES)
+    num_of_paragraphs= get_blog_size(size)
 
-    num_of_paragraphs = random.randrange(size['paragraphs'][0], size['paragraphs'][1]+1)
-    paragraphs = []
     # body
+    paragraphs = []
     for i in range(num_of_paragraphs):
-        num_of_sentences = random.randrange(size['sentences'][0], size['sentences'][1]+1)
+        num_of_sentences = get_paragraph_size(size)
         sentences = generate_sentences(text_model, num_of_sentences)
         paragraphs.append(' '.join(sentences))
 
