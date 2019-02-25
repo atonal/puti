@@ -28,8 +28,10 @@ def generate_post():
         if sentence is not None:
             sentences.append(sentence)
 
-    post='{}\n\n{}'.format(title, ' '.join(sentences))
-    return post
+    body = ' '.join(sentences)
+    return title, body
 
 if __name__ == '__main__':
-    print(generate_post())
+    title, body = generate_post()
+    post = '{}\n\n{}'.format(title, body)
+    print(post)
