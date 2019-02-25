@@ -1,0 +1,31 @@
+.content {
+  max-width: 800px;
+  margin: auto;
+}
+
+body {
+  background-color: #fefffe;
+}
+
+nav {
+  background-color: #116611;
+  color: #fefffe;
+}
+
+nav h1 {
+  padding: 10px;
+  padding-left: 20px;
+}
+
+header {
+}
+
+.title {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.body {
+  padding: 10px;
+  line-height: 1.5;
+}
