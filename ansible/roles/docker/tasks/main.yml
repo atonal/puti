@@ -1,0 +1,22 @@
+---
+- name: docker
+  apt:
+    name: docker-compose
+    update_cache: yes
+  become: yes
+
+- name: pip
+  apt:
+    name: python3-pip
+    update_cache: yes
+  become: yes
+
+- name: docker py
+  pip:
+    name: docker
+  become: yes
+
+- name: docker py
+  pip:
+    name: docker-compose
+  become: yes
