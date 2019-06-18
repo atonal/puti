@@ -3,6 +3,7 @@ FROM python:3.6-alpine
 RUN pip install pipenv
 
 RUN apk --no-cache add \
+        bash \
         nodejs \
         nodejs-npm
 
