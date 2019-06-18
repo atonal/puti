@@ -1,16 +1,10 @@
-FROM python:3.6
+FROM python:3.6-alpine
 
 RUN pip install pipenv
 
-RUN apt-get update && apt-get install -y \
-        curl \
-        && rm -rf /var/lib/apt/lists/*
-
-RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
-
-RUN apt-get update && apt-get install -y \
+RUN apk --no-cache add \
         nodejs \
-        && rm -rf /var/lib/apt/lists/*
+        nodejs-npm
 
 WORKDIR /usr/src/app
 COPY blog-generator ./blog-generator
