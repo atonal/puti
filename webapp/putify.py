@@ -3,8 +3,12 @@ import putisplain
 from flask import Flask, render_template
 app = Flask(__name__)
 
+@app.route("/")
+def main():
+    return render_template('index.html')
+
 @app.route("/putify")
-def hello():
+def putify():
     title, paragraphs= generate_blog.generate_post()
     return render_template('putify.html', title=title, paragraphs=paragraphs)
 
