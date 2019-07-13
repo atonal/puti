@@ -9,6 +9,7 @@ RUN apk --no-cache add \
 
 WORKDIR /usr/src/app
 COPY blog-generator ./blog-generator
+COPY putisplain ./putisplain
 COPY webapp ./webapp
 COPY crawler ./crawler
 
