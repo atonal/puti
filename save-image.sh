@@ -1,1 +1,1 @@
-docker image save -o build/putify.tar putify
+docker image save -o build/puti.tar atonal/puti

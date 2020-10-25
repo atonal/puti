@@ -1,6 +1,6 @@
 version: '3'
 services:
   putify:
-    image: putify
+    image: atonal/puti
     ports:
      - "80:5000"

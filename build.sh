@@ -1,1 +1,1 @@
-docker build -t putify .
+docker build -t atonal/puti .
