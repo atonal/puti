@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: puti-deployment
+  labels:
+    app: puti
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: puti
+  template:
+    metadata:
+      labels:
+        app: puti
+    spec:
+      containers:
+      - name: puti
+        image: atonal/puti:0.0.1@sha256:615f0a305b4abedf6287aab96eb2c842f14216385facfec11adb257180f24232
+        ports:
+        - containerPort: 80
