@@ -3,3 +3,8 @@
   roles:
     - docker
     - putify
+- hosts: raspberrypi
+  roles:
+    - putify_kube
+  environment:
+      KUBECONFIG: /etc/rancher/k3s/k3s.yaml

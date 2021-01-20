@@ -1,0 +1,17 @@
+---
+- name: openshift - required for k8s module
+  pip:
+    name: openshift
+  become: yes
+
+- name: requests - required for k8s module
+  pip:
+    name: requests
+    state: latest
+  become: yes
+
+- name: deploy to kubernetes
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('file', '../kubernetes/puti-deployment.yaml') | from_yaml }}"
+    namespace: default
