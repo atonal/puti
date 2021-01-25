@@ -13,5 +13,5 @@
 - name: deploy to kubernetes
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', '../kubernetes/puti-deployment.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', '../kubernetes/puti-deployment.yaml') | from_yaml_all | list }}"
     namespace: default
