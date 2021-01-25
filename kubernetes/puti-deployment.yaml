@@ -7,7 +7,7 @@ spec:
     app: puti
   ports:
     - protocol: TCP
-      port: 80
+      port: 8080
       targetPort: 5000
 ---
 apiVersion: apps/v1
@@ -31,3 +31,37 @@ spec:
         image: atonal/puti:0.0.1@sha256:615f0a305b4abedf6287aab96eb2c842f14216385facfec11adb257180f24232
         ports:
         - containerPort: 5000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: puti-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          serviceName: puti-service
+          servicePort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  type: NodePort
+  ports:
+    - name: traefik
+      # port of THIS service inside the cluster.
+      port: 8088
+      # port exposed on each node (thus externally)
+      nodePort: 30182
+      # puti-ingress port (80 443 or 8080?)
+      targetPort: 80
+  selector:
+    app: traefik
